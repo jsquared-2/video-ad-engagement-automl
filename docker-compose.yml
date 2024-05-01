@@ -1,0 +1,15 @@
+# Defining Compose Specification
+version: "3.8"
+
+# Defining Services
+services:
+  model:
+    container_name: tf-model
+    build:
+      context: .
+      dockerfile: docker/tf_model.dockerfile
+    image: tf-model
+    volumes:
+      - ./models/model-v1/tf-saved-model/properties:/models/default
+    ports:
+      - "8080:8080"
